@@ -9,37 +9,36 @@ const contentContainerSidebar = document.querySelector(
 );
 
 const weatherIconsMap = {
-  "sunny": "img/svg/01_sunny.svg",
+  sunny: "img/svg/01_sunny.svg",
   "clear night": "img/svg/02_clear_night.svg",
   "partly cloudy day": "img/svg/03_partly_cloudy_day.svg",
-  "cloud": "img/svg/04_cloud.svg",
+  cloud: "img/svg/04_cloud.svg",
   "light rain": "img/svg/05_light_rain.svg",
   "moderate rain": "img/svg/06_moderate_rain.svg",
   "heavy rain": "img/svg/07_heavy_rain.svg",
   "thunder rain": "img/svg/08_thunder_rain.svg",
-  "snow": "img/svg/09_snow.svg",
-  "fog": "img/svg/11_fog.svg",
-  "mist": "img/svg/12_mist.svg",
-  "windy": "img/svg/13_windy.svg",
-  "hail": "img/svg/14_hail.svg",
-  "sleet": "img/svg/15_sleet.svg",
-  "thunder": "img/svg/16_thunder.svg",
+  snow: "img/svg/09_snow.svg",
+  fog: "img/svg/11_fog.svg",
+  mist: "img/svg/12_mist.svg",
+  windy: "img/svg/13_windy.svg",
+  hail: "img/svg/14_hail.svg",
+  sleet: "img/svg/15_sleet.svg",
+  thunder: "img/svg/16_thunder.svg",
   "sun cloud rain": "img/svg/17_sun_cloud_rain.svg",
   "moon cloud": "img/svg/18_moon_cloud.svg",
   "night cloud rain": "img/svg/19_night_cloud_rain.svg",
-  "drizzle": "img/svg/20_drizzle.svg",
+  drizzle: "img/svg/20_drizzle.svg",
   "cloudy day": "img/svg/21_cloudy_day.svg",
-  "overcast": "img/svg/22_overcast.svg",
-  "sunrise": "img/svg/23_sunrise.svg",
-  "sunset": "img/svg/24_sunset.svg",
+  overcast: "img/svg/22_overcast.svg",
+  sunrise: "img/svg/23_sunrise.svg",
+  sunset: "img/svg/24_sunset.svg",
   "cloud with snow": "img/svg/25_cloud_with_snow.svg",
-  "moon": "img/svg/26_moon.svg",
+  moon: "img/svg/26_moon.svg",
   "night clear": "img/svg/27_night_clear.svg",
   "night cloud": "img/svg/28_night_cloud.svg",
   "thunder night": "img/svg/29_thunder_night.svg",
-  "default": "img/svg/30_default.svg"
+  default: "img/svg/30_default.svg",
 };
-
 
 let city;
 
@@ -103,11 +102,16 @@ function getWeather(city) {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("City not found");
+      }
+      return response.json();
+    })
     .then((data) => {
       console.log(data);
 
-      // Удаляем старые данные
+      // --- Удаляем старые данные только при успешном запросе ---
       const prevCondition = document.querySelector("#condition");
       if (prevCondition) prevCondition.remove();
 
@@ -128,15 +132,12 @@ function getWeather(city) {
             <h3>${data.location.name}</h3>
             <p>${data.location.localtime}</p>
           </div>
-          <img src="${iconSrc}" alt="${data.current.condition.text}" class="imgIcon" {
-            constructor(parameters) {
-                
-            }
-          } />
+          <img src="${iconSrc}" alt="${
+        data.current.condition.text
+      }" class="imgIcon"/>
         </section>
       `;
 
-      //< --- Дополнительные данные --- >
       const html2 = `
         <section class="weatherInfo">
           <div class="weatherBox">
@@ -186,7 +187,6 @@ function getWeather(city) {
         </section>
       `;
 
-      // Вставляем карточки
       header.insertAdjacentHTML("afterend", html2);
       if (contentContainerSidebar) {
         contentContainerSidebar.insertAdjacentHTML("afterend", html);
@@ -195,13 +195,30 @@ function getWeather(city) {
       }
     })
     .catch((error) => {
+      // Если город неправильный, выводим alert, не трогая прошлую погоду
+      alert("City not found. Please check the spelling!");
       console.error("Ошибка при получении данных:", error);
     });
 }
 
-// < --- Перезагрузка по Enter --- >
+// < --- Перезагрузка по Enter / поиск по Enter --- >
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    location.reload();
+    city = input.value.trim();
+    if (city) {
+      localStorage.setItem("lastCity", city);
+      getWeather(city);
+    }
+  }
+});
+
+// < --- Поиск через кнопку search --- >
+let search = document.getElementById("vector");
+
+search.addEventListener("click", function () {
+  city = input.value.trim();
+  if (city) {
+    localStorage.setItem("lastCity", city);
+    getWeather(city);
   }
 });

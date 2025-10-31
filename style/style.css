@@ -42,6 +42,7 @@ body {
   border-style: none;
   outline: none;
   max-width: 1200px;
+  text-transform: capitalize;
 }
 
 .searchBtn {
