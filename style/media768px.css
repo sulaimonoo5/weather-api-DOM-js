@@ -1,0 +1,97 @@
+@media (min-width: 768px) {
+  .input {
+    background: #00000000;
+    color: #fff;
+    border-style: none;
+    border-bottom-style: none;
+    outline: none;
+    border-bottom: #fff solid 1px;
+    width: 200px;
+  }
+
+  .box1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    padding: 0 10% 0;
+  }
+
+  .inputBox {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    width: fit-content;
+    gap: 6px;
+  }
+
+  .input {
+    background: #00000000;
+    color: #fff;
+    border-style: none;
+    outline: none;
+    width: 180px;
+  }
+
+  .searchBtn {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+  }
+
+  .main {
+    margin-top: 22vh;
+  }
+
+  .condition {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: auto;
+    padding: 0 10% 0;
+    margin-top: 22vh;
+  }
+
+  .content h1 {
+    font-size: 100px;
+    font-weight: 300;
+  }
+
+  .contentInside h3 {
+    font-size: 50px;
+    font-weight: 300;
+  }
+
+  .contentInside p {
+    font-size: 16px;
+    font-weight: 200;
+  }
+
+  .weatherBox {
+    margin: auto;
+    padding: 0 30% 0;
+  }
+
+  .weatherInfo {
+    background: rgba(255, 255, 255, 0.14);
+    border-top: #ffffff53 solid;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
+    height: 53vh;
+    margin-top: 5vh;
+  }
+
+  .weatherContent {
+    display: flex;
+    justify-content: center;
+    padding-top: 4vh;
+  }
+
+  .mainEndLine {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+  }
+}

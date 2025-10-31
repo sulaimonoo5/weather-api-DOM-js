@@ -1,0 +1,10 @@
+@media (min-width: 1600px) {
+  .inputBox {
+    margin-right: 80px;
+    width: 480px;
+  }
+
+  .mainEndLine {
+    width: 480px;
+  }
+}

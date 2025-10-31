@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/media768px.css" />
+    <link rel="stylesheet" href="style/media900px.css" />
+    <link rel="stylesheet" href="style/media1200px.css" />
+    <link rel="stylesheet" href="style/media1400px.css" />
+    <link rel="stylesheet" href="style/media1600px.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet" />
+    <style>
+      @media (min-width: 170px) {
+        body {
+          background-image: url(img/weather-rain.png);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          height: 100vh;
+        }
+      }
+      @media (min-width: 768px) {
+        body {
+          background-image: url(img/TunderWeather.png);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+      @media (min-width: 900px) {
+        body {
+          background-image: url(img/bg-weather.png);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="head">
+      <div class="box1">
+        <div class="logo">
+          <img src="img/logo.svg" alt="logo" class="imgLogo" />
+        </div>
+        <div class="inputBox">
+          <form id="formInput">
+            <input
+              type="search"
+              placeholder="Search location..."
+              autocomplete="off"
+              class="input"
+              id="search" />
+          </form>
+          <img
+            src="img/icons8-search.svg"
+            alt="search"
+            class="searchBtn"
+            id="vector" />
+        </div>
+      </div>
+    </header>
+
+      <section class="weatherInfo">
+        <div class="weatherBox">
+          <div class="weatherContent">
+            <h1>weather details</h1>
+          </div>
+          <div class="weatherConditionMain">
+            
+            <div class="weatherCondition">
+              <ul class="ulStyle">
+                <li>Temp max</li>
+                <li>Temp min</li>
+                <li>Humadity</li>
+                <li>Cloudy</li>
+                <li>Wind</li>
+              </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="mainEndLine">
+            <div class="endLine"></div>
+          </div>
+        </div>
+      </section>
+
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
